@@ -1,0 +1,54 @@
+.btn {
+    /*https://codepen.io/JavaScriptJunkie/pen/pPRooV*/
+    color: #fff;
+    cursor: pointer;
+    text-align: center;
+    border: none;
+    background-size: 200% 100%;
+    border-radius: 50px;
+    moz-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+}
+
+.btn:hover {
+    /*https://codepen.io/JavaScriptJunkie/pen/pPRooV*/
+    background-position: 100% 0;
+    moz-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+}
+
+.btn-primary {
+    background-image: linear-gradient(to right, #0066ff, #ffa4d8, #0066ff);
+}
+
+.btn-1 {
+    color: #fff;
+    background-image: linear-gradient(to right, #0066ff, #0066ff, #ffa4d8);
+}
+
+.btn-2 {
+    color: #272d2d;
+    background-image: linear-gradient(to right, #ffa4d8, #ffa4d8, #0066ff);
+}
+
+.btn-1:hover,
+.btn-2:hover {
+    color: #fff;
+}
+
+.btn-link,
+.btn-link:hover {
+    color: #ffa4d8;
+}
+
+.text-wrong {
+    color: #f97068;
+}
+
+.card-img-overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+}
