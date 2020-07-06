@@ -7,6 +7,8 @@
 
 ## Running the App
 
+In this project, the root folders correspond to the Back end of the application, while the Front end is located in the "front" folder, making the server take advantage of ReactJS production-optimized files by serving them as ExpressJS static files.
+
 Prerequisites For running the app:
 
 First, you need to install Node.js, to see more information <a href="https://www.mongodb.com/download-center/community">Click here</a>.
