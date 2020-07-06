@@ -94,15 +94,14 @@ function MongoUtils() {
         .finally(() => client.close());
     });
 
-  mu.getEventByID = (id) => {
+  mu.getEventByID = (id) =>
     mu.connect().then((client) => {
-      const eventCol = client.db(dbName).collection(eventCollection);
+      const evCol = client.db(dbName).collection(eventCollection);
 
-      return eventCol
+      return evCol
         .findOne({ _id: new ObjectID(id) })
         .finally(() => client.close());
     });
-  };
 
   return mu;
 }
