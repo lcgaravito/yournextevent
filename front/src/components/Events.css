@@ -3,7 +3,23 @@
 }
 
 .img-card {
+  transition: background-color 0.2s ease;
   background-color: rgba(0, 0, 0, 0.6);
+}
+
+.img-card:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.card {
+  transition: transform 0.2s;
+  cursor: pointer;
+  /* Animation */
+}
+
+.card:hover {
+  transform: scale(1.1);
+  /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
 
 .img-modal {

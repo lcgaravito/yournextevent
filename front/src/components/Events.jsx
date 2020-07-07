@@ -41,7 +41,12 @@ export default function Events() {
             className="col-lg-4 col-md-6 col-xs-12 p-2 align-self-center"
             key={index}
           >
-            <div className="card bg-dark text-white">
+            <div
+              className="card bg-dark text-white"
+              data-toggle="modal"
+              data-target="#staticBackdrop"
+              onClick={() => seeDetails(event, index)}
+            >
               <img
                 className="card-img"
                 src={`https://picsum.photos/800/500?random=${index}`}
