@@ -6,6 +6,7 @@ import "./App.css";
 import Navigation from "./components/Navigation";
 import Home from "./components/Home";
 import Login from "./components/Login";
+import Create from "./components/Create";
 import Profile from "./components/Profile";
 import Events from "./components/Events";
 
@@ -34,6 +35,7 @@ function App() {
         <div className="container p-4">
           <Route path="/" exact component={Home} />
           <Route path="/events" component={Events} />
+          <Route path="/create" component={Create} />
           {username ? (
             <>
               <Route path="/profile" component={Profile} />
