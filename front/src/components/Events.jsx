@@ -51,24 +51,29 @@ export default function Events() {
                 className="card-img"
                 src={`https://picsum.photos/800/500?random=${index}`}
                 alt="Random"
+                onLoad={() => console.log(`Image ${index} loaded!!!`)}
               />
               <div className="card-img-overlay img-card">
-                <h5 className="card-title">{event.title}</h5>
-                <p className="card-text">
-                  {event.location}
-                  <br />
-                  {format(event.date)}
-                </p>
-                {/*<!-- Button trigger modal -->*/}
-                <button
-                  type="button"
-                  className="btn btn-2"
-                  data-toggle="modal"
-                  data-target="#staticBackdrop"
-                  onClick={() => seeDetails(event, index)}
-                >
-                  Details
-                </button>
+                <div className="row h-100">
+                  <div className="col-12 my-auto">
+                    <h5 className="card-title">{event.title}</h5>
+                    <p className="card-text">
+                      {event.location}
+                      <br />
+                      {format(event.date)}
+                    </p>
+                    {/*<!-- Button trigger modal -->*/}
+                    <button
+                      type="button"
+                      className="btn btn-2"
+                      data-toggle="modal"
+                      data-target="#staticBackdrop"
+                      onClick={() => seeDetails(event, index)}
+                    >
+                      Details
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
