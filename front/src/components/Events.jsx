@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { format } from "timeago.js";
 import "./Events.css";
 
 export default function Events() {
   const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [user, setUser] = useState("");
@@ -11,6 +12,8 @@ export default function Events() {
   const [date, setDate] = useState("");
   const [location, setLocation] = useState("");
   const [img, setImg] = useState("");
+
+  const counter = useRef(0);
 
   useEffect(() => {
     fetch([`/api/events`])
@@ -21,6 +24,13 @@ export default function Events() {
         }
       });
   }, []);
+
+  const imageLoaded = () => {
+    counter.current += 1;
+    if (counter.current >= events.length) {
+      setLoading(false);
+    }
+  };
 
   const seeDetails = (event, index) => {
     setTitle(event.title);
@@ -35,49 +45,64 @@ export default function Events() {
   return (
     <div className="text-center">
       <h2>EVENTS AVAILABLE TO YOU</h2>
-      <div className="row">
-        {events.map((event, index) => (
-          <div
-            className="col-lg-4 col-md-6 col-xs-12 p-2 align-self-center"
-            key={index}
-          >
+      <div
+        style={{ display: loading ? "inline-block" : "none" }}
+        className="spinner-border text-secondary"
+        role="status"
+      >
+        <span className="sr-only">Loading...</span>
+      </div>
+      <div
+        style={{
+          transition: "opacity 1s ease-out",
+          opacity: loading ? "0" : "1",
+          height: loading ? "0" : "auto",
+        }}
+      >
+        <div className="row">
+          {events.map((event, index) => (
             <div
-              className="card bg-dark text-white"
-              data-toggle="modal"
-              data-target="#staticBackdrop"
-              onClick={() => seeDetails(event, index)}
+              className="col-lg-4 col-md-6 col-xs-12 p-2 align-self-center"
+              key={index}
             >
-              <img
-                className="card-img"
-                src={`https://picsum.photos/800/500?random=${index}`}
-                alt="Random"
-                onLoad={() => console.log(`Image ${index} loaded!!!`)}
-              />
-              <div className="card-img-overlay img-card">
-                <div className="row h-100">
-                  <div className="col-12 my-auto">
-                    <h5 className="card-title">{event.title}</h5>
-                    <p className="card-text">
-                      {event.location}
-                      <br />
-                      {format(event.date)}
-                    </p>
-                    {/*<!-- Button trigger modal -->*/}
-                    <button
-                      type="button"
-                      className="btn btn-2"
-                      data-toggle="modal"
-                      data-target="#staticBackdrop"
-                      onClick={() => seeDetails(event, index)}
-                    >
-                      Details
-                    </button>
+              <div
+                className="card bg-dark text-white"
+                data-toggle="modal"
+                data-target="#staticBackdrop"
+                onClick={() => seeDetails(event, index)}
+              >
+                <img
+                  className="card-img"
+                  src={`https://picsum.photos/800/500?random=${index}`}
+                  alt="Random"
+                  onLoad={imageLoaded}
+                />
+                <div className="card-img-overlay img-card">
+                  <div className="row h-100">
+                    <div className="col-12 my-auto">
+                      <h5 className="card-title">{event.title}</h5>
+                      <p className="card-text">
+                        {event.location}
+                        <br />
+                        {format(event.date)}
+                      </p>
+                      {/*<!-- Button trigger modal -->*/}
+                      <button
+                        type="button"
+                        className="btn btn-2"
+                        data-toggle="modal"
+                        data-target="#staticBackdrop"
+                        onClick={() => seeDetails(event, index)}
+                      >
+                        Details
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
       {/*<!-- Modal -->*/}
